@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>留言墙 · 念廿不忘 毕业画展</title>
+<meta name="description" content="写一句祝福给华仁中学第廿届美术与设计科毕业生 · Leave a wish for the graduates.">
+<meta property="og:title" content="留言墙 · 念廿不忘 毕业画展 Wishes Wall">
+<meta property="og:image" content="og.jpg">
+<meta name="theme-color" content="#FBF8E4">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+SC:wght@400;700;900&family=Zilla+Slab:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  html,body{height:100%}
+  body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;overflow:hidden}
+  .wb-side{position:fixed;top:0;bottom:0;width:150px;background:url(assets/wish-strips.svg) center/cover no-repeat;opacity:.5;z-index:0;pointer-events:none}
+  .wb-side.l{left:-40px}.wb-side.r{right:-40px;transform:scaleX(-1)}
+  .wb-top{position:relative;z-index:2;display:flex;align-items:center;gap:14px;padding:14px 4vw}
+  .wb-top .home{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-2);font-weight:700;letter-spacing:.1em}
+  .wb-top .home img{height:30px}
+  .wb-top .back{margin-left:auto;font-size:14px;color:var(--ink-2);text-decoration:none;padding:6px 14px;border-radius:99px;border:1.5px solid var(--line)}
+  .wb-top .back:hover{border-color:var(--ink)}
+  .wb-head{position:relative;z-index:2;text-align:center;padding:4px 6vw 10px}
+  .wb-head h1{font-size:clamp(26px,3.6vw,46px);font-weight:900;letter-spacing:.14em;color:var(--ink-2);line-height:1.25}
+  html[lang=en] .wb-head h1{font-family:var(--latin);font-weight:600;letter-spacing:.02em}
+  .wb-head p{color:var(--muted);font-size:15px;margin-top:4px}
+  .wb-head .cnt{font-family:var(--slab);color:var(--ink);font-weight:700}
+  .wb-wall{position:relative;z-index:1;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
+  .wb-wall .lanes{gap:18px;padding:10px 0}
+  .wb-wall .wish{max-width:380px}
+  .wb-wall .wish blockquote{font-size:17px}
+  .compose{position:relative;z-index:3;margin:0 auto 18px;width:min(980px,94vw);display:grid;grid-template-columns:150px 170px 1fr auto;gap:10px;padding:12px;border-radius:22px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 20px 50px -24px rgba(46,70,99,.55);border:1px solid var(--line)}
+  .compose input,.compose select{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:#fff;font:inherit;font-size:15px;color:var(--text);outline:none;min-width:0}
+  .compose input:focus,.compose select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(61,90,124,.12)}
+  .compose .msg{position:relative}
+  .compose .msg small{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-family:var(--slab);font-size:12px;color:var(--muted);pointer-events:none}
+  .compose .msg input{padding-right:58px}
+  .compose button{padding:12px 24px;border-radius:14px;background:var(--ink);color:#fff;font-size:16px;letter-spacing:.1em;white-space:nowrap;transition:background .2s,transform .2s}
+  .compose button:hover{background:var(--ink-2)}
+  .compose button:disabled{opacity:.5}
+  .note{position:relative;z-index:3;text-align:center;font-size:12.5px;color:var(--muted);margin:-8px 0 12px;padding:0 4vw}
+  .toast{position:fixed;left:50%;bottom:120px;transform:translate(-50%,20px);opacity:0;z-index:9;padding:10px 20px;border-radius:99px;background:var(--ink);color:#fff;font-size:15px;transition:.35s;pointer-events:none}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  @media (max-width:760px){
+    .wb-side{display:none}
+    .compose{grid-template-columns:1fr 1fr;border-radius:18px;margin-bottom:10px}
+    .compose .msg{grid-column:1/-1;order:-1}
+    .compose button{grid-column:1/-1}
+    .wb-wall .wish{max-width:270px}
+    .wb-wall .wish blockquote{font-size:15px}
+  }
+</style>
+</head>
+<body>
+<div class="wb-side l"></div><div class="wb-side r"></div>
+<header class="wb-top">
+  <a class="home" href="index.html"><img src="logos/expo.png" alt=""><span data-en="Nian Nian Bu Wang">念廿不忘</span></a>
+  <button class="lang" id="langBtn" aria-label="Switch language / 切换语言"><span class="zh">中</span><i>/</i><span class="en">EN</span></button>
+  <a class="back" href="index.html#wishes" data-en="← Back to the gallery">← 回到展厅</a>
+</header>
+<div class="wb-head">
+  <h1 data-en="Wishes for the Graduates">写给毕业生的祝福</h1>
+  <p><span data-en="The 20th Art &amp; Design graduating class, Chinese High School Batu Pahat">华仁中学第廿届美术与设计科毕业班</span> · <span class="cnt" id="cnt"></span></p>
+</div>
+<main class="wb-wall"><div class="lanes" id="lanes"></div></main>
+<form class="compose" id="form" autocomplete="off">
+  <input id="fName" maxlength="20" placeholder="你的名字（可不填）" data-en-ph="Your name (optional)">
+  <select id="fTo"></select>
+  <div class="msg"><input id="fMsg" maxlength="120" required placeholder="写下你的祝福…" data-en-ph="Write your wish…"><small id="fLen">0/120</small></div>
+  <button type="submit" id="fBtn" data-en="Send">送出</button>
+</form>
+<p class="note" id="note"></p>
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script src="guestbook.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  let LANG = (() => { try { const q = new URLSearchParams(location.search).get('lang'); if (q) return q === 'en' ? 'en' : 'zh'; return localStorage.getItem('nnbw_lang') === 'en' ? 'en' : 'zh'; } catch (e) { return 'zh'; } })();
+  const EN = () => LANG === 'en', L = (a, b) => EN() ? b : a;
+  const S = window.EXPO_DATA.students.map(s => ({ ...s, name: s.name.replace('黄思境', '黄思静') }));
+  let ALL = [], fresh = null;
+  const lanesN = () => innerWidth <= 760 ? 4 : innerHeight > 820 ? 6 : 5;
+  function render() {
+    window.GB.lanes($('#lanes'), ALL.slice(-240), lanesN(), EN(), fresh);
+    $('#cnt').textContent = L(`已有 ${ALL.length} 则祝福`, `${ALL.length} wishes`);
+  }
+  function applyLang() {
+    document.documentElement.lang = EN() ? 'en' : 'zh-Hans';
+    document.title = L('留言墙 · 念廿不忘 毕业画展', 'Wishes Wall · Nian Nian Bu Wang Exhibition');
+    $$('[data-en]').forEach(el => { if (el.dataset.zh === undefined) el.dataset.zh = el.innerHTML; el.innerHTML = EN() ? el.dataset.en : el.dataset.zh; });
+    $$('[data-en-ph]').forEach(el => { if (el.dataset.zhPh === undefined) el.dataset.zhPh = el.placeholder; el.placeholder = EN() ? el.dataset.enPh : el.dataset.zhPh; });
+    $('#langBtn').classList.toggle('is-en', EN());
+    const v = $('#fTo').value;
+    $('#fTo').innerHTML = `<option value="">${L('送给：全体毕业生', 'To: all graduates')}</option>` + S.map(s => `<option value="${s.name}">${L('送给：', 'To: ')}${EN() ? s.en + ' ' + s.name : s.name}</option>`).join('');
+    $('#fTo').value = v;
+    $('#note').textContent = window.GB.live ? L('留言会公开显示在留言墙上，请友善发言。', 'Messages are shown publicly on the wall — please be kind.')
+      : L('预览模式：留言服务尚未连接，你的留言目前只保存在这台设备上。', 'Preview mode: the guestbook server is not connected yet — your wish is only saved on this device.');
+    render();
+  }
+  $('#langBtn').onclick = () => { LANG = EN() ? 'zh' : 'en'; try { localStorage.setItem('nnbw_lang', LANG); } catch (e) {} applyLang(); };
+  $('#fMsg').addEventListener('input', e => $('#fLen').textContent = `${e.target.value.length}/120`);
+  const toast = t => { const el = $('#toast'); el.textContent = t; el.classList.add('on'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('on'), 2600); };
+  $('#form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const m = $('#fMsg').value.trim(); if (!m) return;
+    $('#fBtn').disabled = true;
+    try {
+      const msg = await window.GB.post({ n: $('#fName').value, to: $('#fTo').value, m });
+      fresh = msg; ALL.push(msg); render();
+      $('#fMsg').value = ''; $('#fLen').textContent = '0/120';
+      toast(L('谢谢你的祝福！已贴上留言墙 ✿', 'Thank you! Your wish is on the wall ✿'));
+    } catch (err) { console.error(err); toast(L('送出失败，请稍后再试', 'Could not send — please try again')); }
+    finally { $('#fBtn').disabled = false; }
+  });
+  async function load() {
+    try { const list = await window.GB.list(); if (fresh && !list.some(x => x.m === fresh.m && x.n === fresh.n)) list.push(fresh); ALL = list; } catch (e) { console.warn(e); }
+    render();
+  }
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 200); });
+  applyLang(); load();
+  if (window.GB.live) setInterval(() => { if (!document.hidden) { fresh = null; load(); } }, 30000);
+})();
+</script>
+</body>
+</html>
